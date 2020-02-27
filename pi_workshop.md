@@ -47,6 +47,7 @@
 
 # Flash SD card
 
+- https://www.raspberrypi.org/downloads/raspbian/
 - hopefully you did this already
 - any questions?
 
@@ -147,11 +148,13 @@ while True: # Run forever
 
 # Run at startup
 
-`sudo python /home/pi/sample.py & > /home/pi/Desktop/log.txt 2>&1`
+- open `sudo nano /etc/rc.local`
+
+- paste this `sudo python /home/pi/blinky.py & > /home/pi/log.txt 2>&1` in before `exit`
 
 ---
 
-# Deploy script
+# Deploy script 1
 
 - create `~/deploy.sh`
 - type or copy & paste
@@ -160,10 +163,15 @@ while True: # Run forever
 #! /bin/bash
 
 echo "copying files"
-scp -r blinky.py pi@dino-rpi.local:/home/pi/blinky.py
+scp -r blinky.py pi@<YOUR HOSTNAME>.local:/home/pi/blinky.py
 echo "done"
 ```
 - save
+
+---
+
+# Deploy script 2
+
 - make it executable `chmod 744 deploy.sh`
 - make a change to blinky.py
 - run `sh deploy.sh`
@@ -178,3 +186,6 @@ https://gist.github.com/MaiLinhGroup
 
 ---
 
+# These slides
+
+https://github.com/genericspecific/pi_workshop
