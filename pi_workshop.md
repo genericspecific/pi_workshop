@@ -1,4 +1,8 @@
-# Getting Started with Raspberry Pi v0.1
+# Getting Started with Raspberry Pi v0.2
+
+---
+
+# What is it?
 
 ---
 
@@ -8,6 +12,10 @@
 - **many** distros available. we will use vanilla Rasbian Lite (No gui)
 - other OSes available: RISC OS, Windows IoT
 - lots of interfaces
+
+---
+
+# ¡¡¡Its just a computer!!!
 
 ---
 
@@ -26,7 +34,7 @@
 
 # Tasks part 1
 
-- ✅ flash SD card
+- flash SD card
 - set up wifi
 - enable ssh
 - change hostname
@@ -45,11 +53,26 @@
 
 ---
 
-# Flash SD card
+# Flash SD card 1
 
-- https://www.raspberrypi.org/downloads/raspbian/
-- hopefully you did this already
-- any questions?
+- `https://www.raspberrypi.org/downloads/raspbian/`
+- download and unzip image
+- insert sd card
+
+---
+
+# Flash SD card 2
+
+- get disk id: `diskutil list`
+- unmount drive: `diskutil unmountDisk /dev/DISK_ID`
+- `sudo dd bs=1m if=PATH_TO_YOUR_IMG of=/dev/rYOUR_DISK conv=sync`
+- ⚠️ double check your are writing to the correct disk ⚠️ 
+
+---
+
+# /dev/disk vs /dev/rdisk
+
+>In layman's terms `/dev/rdisk` goes almost directly to disk and `/dev/disk` goes via a longer more expensive route
 
 ---
 
@@ -76,10 +99,9 @@
 
 # Change hostname 1
 
-- do this one at a time because zeroconf
+- ⚠️ if there are more than one of you on the same wifi this one at a time because zeroconf ⚠️
 - insert card into pi
 - power it up
-- join wifi with your mac
 - `ssh pi@raspberrypi.local`
 - password: **raspberry**
 
@@ -92,6 +114,10 @@
 
 ---
 
+From here, many pis will be accessible on the same network 
+
+---
+
 # Change default password
 - `passwd`
 
@@ -99,9 +125,10 @@
 
 # Set up key based auth
 
-- open a shell on your mac
-- `ssh-copy-id -i ~/.ssh/mykey user@host`
-- https://www.raspberrypi.org/documentation/remote-access/ssh/passwordless.md
+- **on your mac**
+- `ls ~/.ssh`
+- `ssh-copy-id -i ~/.ssh/MY_PUBLIC_KEY pi@PI_HOSTNAME.local`
+- `https://www.raspberrypi.org/documentation/remote-access/ssh/passwordless.md`
 
 ---
 
@@ -113,7 +140,7 @@
 # Install .py GPIO libs
 
 - `sudo apt-get install python-rpi.gpio python3-rpi.gpio`
-- other software?
+- install other software now if you need/want it
 
 ---
 
@@ -163,7 +190,7 @@ while True: # Run forever
 #! /bin/bash
 
 echo "copying files"
-scp -r blinky.py pi@<YOUR HOSTNAME>.local:/home/pi/blinky.py
+scp -r blinky.py pi@PI_HOSTNAME.local:/home/pi/blinky.py
 echo "done"
 ```
 - save
@@ -172,8 +199,9 @@ echo "done"
 
 # Deploy script 2
 
-- make it executable `chmod 744 deploy.sh`
-- make a change to blinky.py
+- make it executable 
+- `chmod 744 deploy.sh`
+- make a change to `blinky.py` to test
 - run `sh deploy.sh`
 
 ---

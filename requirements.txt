@@ -1,0 +1,13 @@
+Requirements
+
+per participant
+
+- Raspberry Pi (pref. 3B or later)
+- SD Card
+- USB3 Card reader
+- Laptop
+- USB Cable (A->µ or C->µ)
+- breadboard
+- 2 jumper cables
+- Led
+- 100Ω resistor

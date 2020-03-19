@@ -1,0 +1,37 @@
+https://www.raspberrypi.org/downloads/raspbian/
+
+diskutil list
+
+diskutil unmountDisk /dev/DISK_ID
+
+sudo dd bs=1m if=PATH_TO_YOUR_IMG of=/dev/rYOUR_DISK conv=sync
+
+touch /Volumes/boot/wpa_supplicant.conf
+
+touch /Volumes/boot/ssh
+
+ssh pi@raspberrypi.local
+
+sudo nano /etc/hostname
+
+sudo reboot now
+
+passwd
+
+ls ~/.ssh
+
+ssh-copy-id -i ~/.ssh/MY_PUBLIC_KEY pi@PI_HOSTNAME.local
+
+sudo apt-get install python-rpi.gpio python3-rpi.gpio
+
+python blinky.py
+
+sudo nano /etc/rc.local
+
+sudo python /home/pi/blinky.py & > /home/pi/log.txt 2>&1
+
+~/deploy.sh
+
+chmod 744 deploy.sh
+
+sh deploy.sh
